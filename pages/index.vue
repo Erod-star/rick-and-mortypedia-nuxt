@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <div class="">
+    <div class="a">
       <h1>Welcome to the best Rick and Morty wiki!</h1>
 
       <span>
@@ -8,10 +8,8 @@
         also good if your looking out for some Rick and Morty info
       </span>
 
-      <v-btn variant="outlined">
-        <NuxtLink to="/characters">
-          See some wuabalubadubdub characters
-        </NuxtLink>
+      <v-btn variant="outlined" @click="push('/characters')">
+        See some wuabalubadubdub characters
       </v-btn>
     </div>
 
@@ -32,6 +30,8 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const { push } = useRouter();
+</script>
 
 <style scoped></style>

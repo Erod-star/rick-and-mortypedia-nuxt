@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <header
-      class="shadow-sm h-20 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white"
+      class="shadow-sm h-20 bg-gradient-to-r from-black to-green-500 text-white"
     >
+      <!-- class="shadow-sm h-20 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white" -->
       <nav class="container mx-auto p-4 flex justify-between">
         <div class="flex">
           <img
@@ -16,6 +17,7 @@
           <li><NuxtLink to="/characters"> Characters </NuxtLink></li>
           <li><NuxtLink to="/locations">Locations</NuxtLink></li>
           <li><NuxtLink to="/episodes">Episodes</NuxtLink></li>
+          <li><NuxtLink to="/profile">Profile</NuxtLink></li>
         </ul>
       </nav>
     </header>

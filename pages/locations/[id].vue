@@ -4,6 +4,8 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+// Implement giphy and add a gif based on the name of the episode
+</script>
 
 <style scoped></style>
