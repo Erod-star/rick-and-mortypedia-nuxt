@@ -50,6 +50,7 @@
           <v-btn
             v-for="id in charactersIds"
             color="rgb(134 239 172 / 1)"
+            rounded
             @click="router.push(`/characters/${id}`)"
           >
             {{ id }}
@@ -92,7 +93,15 @@ const charactersIds = computed(() => {
   return characters;
 });
 
-// console.log(gifs.value);
+useHead({
+  title: `Rick and Mortypedia | Episode ${episodeId}`,
+  meta: [
+    {
+      name: `Rick and Morty episode ${episodeId}`,
+      content: `value info about the episode ${episodeId}`,
+    },
+  ],
+});
 </script>
 
 <style scoped lang="sass">

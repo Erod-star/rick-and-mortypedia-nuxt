@@ -14,7 +14,7 @@
           <NuxtLink to="/" class="font-bold"> Rick and Mortypedia</NuxtLink>
         </div>
         <ul class="flex gap-4">
-          <li><NuxtLink to="/characters"> Characters </NuxtLink></li>
+          <li><NuxtLink to="/characters">Characters </NuxtLink></li>
           <li><NuxtLink to="/locations">Locations</NuxtLink></li>
           <li><NuxtLink to="/episodes">Episodes</NuxtLink></li>
           <li><NuxtLink to="/profile">Profile</NuxtLink></li>
@@ -29,11 +29,15 @@
 </template>
 
 <script setup>
-import { useMainStore } from "../stores/mainStore";
+import { useMainStore } from "@/stores/mainStore";
 
-const mainStore = useMainStore();
+const { characters, getCharacters } = useMainStore();
 onMounted(() => {
-  if (!mainStore.characters.length) mainStore.getCharacters();
+  if (!characters.length) getCharacters();
+});
+
+watch(characters, () => {
+  if (characters.length === 0) getCharacters();
 });
 </script>
 

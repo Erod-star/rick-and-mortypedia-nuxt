@@ -11,6 +11,9 @@ export const useUserStore = defineStore("user", {
     fullName() {
       return `${this.firstName} ${this.lastName}`;
     },
+    favCharacters() {
+      return this.favoriteCharacters;
+    },
   },
   actions: {
     onLogin() {
@@ -29,6 +32,11 @@ export const useUserStore = defineStore("user", {
       );
 
       if (!isOnFavorites) this.favoriteEpisodes.push(episode);
+    },
+    deleteFromFavoriteCharacters(character) {
+      this.favoriteCharacters = this.favoriteCharacters.filter(
+        (c) => c.id !== character.id
+      );
     },
   },
 });

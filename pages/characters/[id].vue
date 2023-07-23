@@ -82,10 +82,12 @@
           <v-btn
             class="mt-6"
             variant="tonal"
-            color="lime-lighten-2"
+            :color="isOnFavorites(character.id) ? 'green' : 'lime-lighten-2'"
             @click="addToFavoriteCharacter(character)"
           >
-            Add to favorites!
+            {{
+              isOnFavorites(character.id) ? "On favorites" : "Add to favorites"
+            }}
           </v-btn>
         </div>
       </div>
@@ -97,7 +99,11 @@
 import { useUserStore } from "@/stores/userStore";
 
 const { params } = useRoute();
-const { addToFavoriteCharacter } = useUserStore();
+const {
+  favoriteCharacters,
+  addToFavoriteCharacter,
+  deleteFromFavoriteCharacters,
+} = useUserStore();
 const router = useRouter();
 const prasedEpisodes = ref([]);
 
@@ -117,9 +123,19 @@ if (!character.value) {
   throw createError({ statusCode: 404, statusMessage: "Character not found" });
 }
 
+const isOnFavorites = (id) => {
+  const existOnFavorites = favoriteCharacters.find((c) => c.id === id);
+  return existOnFavorites;
+};
+
 useHead({
   title: `Rick and Mortypedia | ${character.value.name}`,
-  meta: [{ name: "description of", content: "Nuxt 3 Merch" }],
+  meta: [
+    {
+      name: `description of ${character.value.name}`,
+      content: `value info about ${character.value.name}`,
+    },
+  ],
 });
 setEpisodes(character.value.episode);
 
