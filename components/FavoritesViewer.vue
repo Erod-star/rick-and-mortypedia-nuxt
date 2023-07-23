@@ -1,17 +1,39 @@
 <template>
-  <div>
-    <p class="mb-10">Favorite {{ title }}:</p>
+  <div
+    v-if="items.length === 0"
+    class="favorites_empty flex justify-center align-center"
+  >
+    <slot name="empty" />
+  </div>
+  <div v-else>
+    <h3 class="mb-4 text-xl text-center">{{ title }}</h3>
 
-    <div class="favorite__characters grid grid-cols-5 gap-5 max-w-sm">
-      <v-avatar
-        v-for="item in items"
-        :key="item.id"
-        class="character__avatar"
-        :image="item.image"
-        size="x-large"
-        @click="push(`${path}/${item.id}`)"
-      />
-    </div>
+    <v-sheet class="mx-auto" max-width="500" rounded color="#151515">
+      <v-slide-group show-arrows>
+        <template #prev>
+          <i class="material-icons-outlined text-white"> arrow_back_ios </i>
+        </template>
+        <template #next>
+          <i class="material-icons-outlined text-white"> arrow_forward_ios </i>
+        </template>
+        <v-slide-group-item v-for="item in items" :key="item.id">
+          <v-btn
+            class="rounded-full"
+            variant="text"
+            @click="push(`${path}/${item.id}`)"
+          >
+            <v-avatar
+              class="character__avatar avatar-btn"
+              :image="item.image"
+              size="x-large"
+            />
+            <v-tooltip activator="parent" location="bottom">
+              {{ item.name }}
+            </v-tooltip>
+          </v-btn>
+        </v-slide-group-item>
+      </v-slide-group>
+    </v-sheet>
   </div>
 </template>
 
@@ -32,9 +54,13 @@ const { push } = useRouter();
 </script>
 
 <style lang="sass" scoped>
-.favorite__characters
-  max-height: 135px
-  overflow-y: auto
+.v-btn
+  display: flex
+  align-items: center
+  height: 56px
+  width: 56px
+.favorites_empty
+    min-height: 100px
 .character__avatar
   &:hover
       cursor: pointer

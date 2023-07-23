@@ -6,6 +6,7 @@ export const useUserStore = defineStore("user", {
     lastName: "Rodriguez",
     favoriteCharacters: [],
     favoriteEpisodes: [],
+    favoriteLocations: [],
   }),
   getters: {
     fullName() {
