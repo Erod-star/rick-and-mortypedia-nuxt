@@ -10,4 +10,7 @@ body {
   .card {
     @apply p-3 rounded-md bg-white shadow-md h-full;
   }
+  .card-dark {
+    @apply p-3 rounded-md bg-black shadow-md h-full;
+  }
 }
