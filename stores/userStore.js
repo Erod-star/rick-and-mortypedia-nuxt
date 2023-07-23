@@ -5,6 +5,7 @@ export const useUserStore = defineStore("user", {
     firstName: "Edson",
     lastName: "Rodriguez",
     favoriteCharacters: [],
+    favoriteEpisodes: [],
   }),
   getters: {
     fullName() {
@@ -21,6 +22,13 @@ export const useUserStore = defineStore("user", {
       );
 
       if (!isOnFavorites) this.favoriteCharacters.push(character);
+    },
+    addToFavoriteEpisodes(episode) {
+      const isOnFavorites = this.favoriteEpisodes.find(
+        (e) => e.id === episode.id
+      );
+
+      if (!isOnFavorites) this.favoriteEpisodes.push(episode);
     },
   },
 });

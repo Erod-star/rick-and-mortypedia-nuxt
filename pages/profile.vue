@@ -11,14 +11,22 @@
       <v-img
         height="300"
         max-width="300"
-        alt="user photo"
+        alt="user thumb"
         src="https://fondosmil.com/fondo/52339.jpg"
       />
 
       <div class="profile__favorites">
-        <FavoriteCharacters :characters="favoriteCharacters" />
+        <FavoritesViewer
+          title="characters"
+          :items="favoriteCharacters"
+          path="characters"
+        />
         <hr />
-        <FavoriteCharacters :characters="favoriteCharacters" />
+        <FavoritesViewer
+          title="episodes"
+          :items="favoriteEpisodes"
+          path="episodes"
+        />
         <hr />
       </div>
     </div>
@@ -28,7 +36,10 @@
 <script setup>
 import { useUserStore } from "../stores/userStore";
 
-const { fullName, favoriteCharacters } = useUserStore();
+const { fullName, favoriteCharacters, favoriteEpisodes } = useUserStore();
 </script>
 
-<style lang="sass" scoped></style>
+<style lang="sass" scoped>
+.card
+  color: rgb(134 239 172 / 1)
+</style>
