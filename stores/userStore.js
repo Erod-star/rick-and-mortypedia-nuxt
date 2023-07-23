@@ -34,6 +34,13 @@ export const useUserStore = defineStore("user", {
 
       if (!isOnFavorites) this.favoriteEpisodes.push(episode);
     },
+    addToFavoriteLocations(location) {
+      const isOnFavorites = this.favoriteLocations.find(
+        (l) => l.id === location.id
+      );
+
+      if (!isOnFavorites) this.favoriteLocations.push(location);
+    },
     deleteFromFavoriteCharacters(character) {
       this.favoriteCharacters = this.favoriteCharacters.filter(
         (c) => c.id !== character.id

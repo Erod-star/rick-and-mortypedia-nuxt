@@ -17,7 +17,9 @@
           >
             {{ `${episode.episode} - ${episode.name}` }}
           </NuxtLink>
-          <p class="text-gray-400">{{ episode.air_date }}</p>
+          <p class="text-gray-400">
+            <i> {{ episode.air_date }} </i>
+          </p>
         </div>
       </div>
     </div>

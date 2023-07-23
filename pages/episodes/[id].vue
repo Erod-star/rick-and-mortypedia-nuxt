@@ -28,8 +28,8 @@
           Season: <i class="text-white">{{ episode.episode }}</i>
         </p>
         <v-btn
-          variant="tonal"
-          color="lime-lighten-2"
+          variant="outlined"
+          :color="isOnFavorites(episode.id) ? 'green' : 'lime-lighten-2'"
           @click="
             addToFavoriteEpisodes({
               id: episode.id,
@@ -38,18 +38,19 @@
             })
           "
         >
-          Add to favorites!
+          {{ isOnFavorites(episode.id) ? "On favorites" : "Add to favorites" }}
         </v-btn>
       </div>
 
       <div class="episode__characters">
         <h3 class="text-2xl mb-4">Characters</h3>
         <div
-          class="episode__characters_buttons-container grid grid-cols-5 gap-3"
+          class="episode__characters_buttons_container grid grid-cols-5 gap-3"
         >
           <v-btn
             v-for="id in charactersIds"
             color="rgb(134 239 172 / 1)"
+            variant="outlined"
             rounded
             @click="router.push(`/characters/${id}`)"
           >
@@ -64,7 +65,7 @@
 <script setup>
 import { useUserStore } from "@/stores/userStore";
 
-const { addToFavoriteEpisodes } = useUserStore();
+const { addToFavoriteEpisodes, favoriteEpisodes } = useUserStore();
 const { params } = useRoute();
 const router = useRouter();
 const episodeId = params.id;
@@ -78,10 +79,7 @@ if (!episode.value) {
 }
 
 const { data: gifs } = await useFetch(
-  `/api/episodes/${episodeId}?title=${episode.value.name}`,
-  {
-    method: "get",
-  }
+  `/api/episodes/${episodeId}?title=${episode.value.name}`
 );
 
 const charactersIds = computed(() => {
@@ -92,6 +90,13 @@ const charactersIds = computed(() => {
   });
   return characters;
 });
+
+const isOnFavorites = (id) => {
+  const existOnFavorites = favoriteEpisodes.find(
+    (episode) => episode.id === id
+  );
+  return existOnFavorites;
+};
 
 useHead({
   title: `Rick and Mortypedia | Episode ${episodeId}`,
@@ -107,7 +112,7 @@ useHead({
 <style scoped lang="sass">
 .episode
   &__characters
-    &_buttons-container
+    &_buttons_container
       max-height: 135px
       overflow-y: auto
       overflow-x: hidden

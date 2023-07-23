@@ -97,7 +97,7 @@ const onEditInfo = () => {
 
 <style lang="sass" scoped>
 .profile__image_container
-  height: 385px
+  height: 100%
   width: 385px
 .profile__image_change_photo
   position: relative

@@ -15,8 +15,8 @@
         </div>
         <ul class="flex gap-4">
           <li><NuxtLink to="/characters">Characters </NuxtLink></li>
-          <li><NuxtLink to="/locations">Locations</NuxtLink></li>
           <li><NuxtLink to="/episodes">Episodes</NuxtLink></li>
+          <li><NuxtLink to="/locations">Locations</NuxtLink></li>
           <li><NuxtLink to="/profile">Profile</NuxtLink></li>
         </ul>
       </nav>
@@ -31,10 +31,18 @@
 <script setup>
 import { useMainStore } from "@/stores/mainStore";
 
-const { characters, episodes, getCharacters, getEpisodes } = useMainStore();
+const {
+  characters,
+  episodes,
+  locations,
+  getCharacters,
+  getEpisodes,
+  getLocations,
+} = useMainStore();
 onMounted(() => {
   if (!characters.length) getCharacters();
   if (!episodes.length) getEpisodes();
+  if (!locations.length) getLocations();
 });
 
 watch(characters, () => {

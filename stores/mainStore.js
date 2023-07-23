@@ -15,7 +15,10 @@ export const useMainStore = defineStore("main", {
     async getEpisodes() {
       const data = await $fetch("https://rickandmortyapi.com/api/episode");
       this.episodes = data.results;
-      console.log(this.episodes);
+    },
+    async getLocations() {
+      const data = await $fetch("https://rickandmortyapi.com/api/location");
+      this.locations = data.results;
     },
     storeCharacter(character) {
       this.characters.push(character);

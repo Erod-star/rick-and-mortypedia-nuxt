@@ -81,7 +81,7 @@
 
           <v-btn
             class="mt-6"
-            variant="tonal"
+            variant="outlined"
             :color="isOnFavorites(character.id) ? 'green' : 'lime-lighten-2'"
             @click="addToFavoriteCharacter(character)"
           >
@@ -124,7 +124,9 @@ if (!character.value) {
 }
 
 const isOnFavorites = (id) => {
-  const existOnFavorites = favoriteCharacters.find((c) => c.id === id);
+  const existOnFavorites = favoriteCharacters.find(
+    (character) => character.id === id
+  );
   return existOnFavorites;
 };
 
