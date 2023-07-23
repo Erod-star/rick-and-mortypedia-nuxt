@@ -31,9 +31,10 @@
 <script setup>
 import { useMainStore } from "@/stores/mainStore";
 
-const { characters, getCharacters } = useMainStore();
+const { characters, episodes, getCharacters, getEpisodes } = useMainStore();
 onMounted(() => {
   if (!characters.length) getCharacters();
+  if (!episodes.length) getEpisodes();
 });
 
 watch(characters, () => {
