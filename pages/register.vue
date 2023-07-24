@@ -78,6 +78,7 @@ const signUp = async () => {
             class="mt-10"
             color="green-lighten-1"
             variant="tonal"
+            type="submit"
             @click="signUp"
           >
             Register
@@ -125,6 +126,6 @@ const signUp = async () => {
     left: 40px
   .site-logo
     position: absolute
-    left: calc(50% - 94px)
+    left: calc(50% - 85px)
     top: -25px
 </style>

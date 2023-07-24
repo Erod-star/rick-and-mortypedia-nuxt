@@ -35,7 +35,7 @@ const logout = async () => {
 <template>
   <div>
     <div class="flex mt-12 px-20 align-center justify-between">
-      <h1 v-if="user" class="text-4xl">{{ user.email }}</h1>
+      <h1 v-if="user" class="text-4xl">Account: {{ user.email }}</h1>
       <v-btn
         class="ma-2"
         rounded

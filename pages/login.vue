@@ -49,7 +49,7 @@ const signIn = async () => {
         </h3>
         <h3 class="mt-7 text-2xl font-bold">Login</h3>
 
-        <form @submit.prevent action="" class="mt-8">
+        <form @submit.prevent class="mt-8">
           <v-text-field
             class="px-6"
             label="Email"
@@ -75,6 +75,7 @@ const signIn = async () => {
             class="mt-10"
             color="green-lighten-1"
             variant="tonal"
+            type="submit"
             @click="signIn"
           >
             Login
@@ -124,6 +125,6 @@ const signIn = async () => {
     left: 40px
   .site-logo
     position: absolute
-    left: calc(50% - 94px)
+    left: calc(50% - 85px)
     top: -25px
 </style>

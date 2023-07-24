@@ -1,3 +1,11 @@
+<script setup>
+const { error } = defineProps({
+  error: Object,
+});
+
+const handleClickError = () => clearError({ redirect: "/" });
+</script>
+
 <template>
   <div class="error_container flex justify-center align-center">
     <div class="error_card max-w-sm text-center text-black card relative">
@@ -15,14 +23,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-const { error } = defineProps({
-  error: Object,
-});
-
-const handleClickError = () => clearError({ redirect: "/" });
-</script>
 
 <style lang="sass">
 body
