@@ -1,12 +1,14 @@
 <template>
   <div>
-    <h1>This is the login page</h1>
     <div>
       <slot />
     </div>
   </div>
 </template>
 
-<script></script>
+<script>
+// erodstardev@gmail.com
+// 12345
+</script>
 
 <style lang="sass" scoped></style>

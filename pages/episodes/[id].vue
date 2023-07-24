@@ -48,6 +48,7 @@
           class="episode__characters_buttons_container grid grid-cols-5 gap-3"
         >
           <v-btn
+            class="mr-3"
             v-for="id in charactersIds"
             color="rgb(134 239 172 / 1)"
             variant="outlined"

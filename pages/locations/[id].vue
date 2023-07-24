@@ -51,6 +51,7 @@
           <v-btn
             v-for="id in charactersIds"
             :key="id"
+            class="mr-3"
             color="rgb(134 239 172 / 1)"
             variant="outlined"
             rounded

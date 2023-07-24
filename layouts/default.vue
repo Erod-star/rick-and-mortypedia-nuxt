@@ -60,4 +60,19 @@ body
 .router-link-exact-active,
 .router-link-active
   color: #FFEA00
+
+::-webkit-scrollbar
+  width: 0.7em
+
+::-webkit-scrollbar-track
+  background: transparent
+  border-radius: 100vh
+  margin-block: 0.5em
+
+::-webkit-scrollbar-thumb
+  background: #4CAF50
+  border-radius: 100vh
+
+::-webkit-scrollbar-thumb:hover
+  background: darken($color: #4CAF50, $amount: 10)
 </style>

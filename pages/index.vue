@@ -88,6 +88,7 @@ const { push } = useRouter();
     width: 500px
   .homepage_card
     background: #151515
+    z-index: 10
   .homepage_card_images_container
     position: relative
     height: 400px
