@@ -1,9 +1,39 @@
+<script setup>
+import { useUserStore } from "@/stores/userStore";
+definePageMeta({
+  middleware: ["auth"],
+});
+
+const { favoriteCharacters, favoriteEpisodes, favoriteLocations } =
+  useUserStore();
+
+const router = useRouter();
+const client = useSupabaseAuthClient();
+const user = useSupabaseUser();
+
+const logout = async () => {
+  try {
+    const { error } = await client.auth.signOut();
+    if (error) throw error;
+    router.push("/login");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+</script>
+
 <template>
   <div>
     <div class="flex mt-12 px-20 align-center justify-between">
-      <h1 class="text-4xl">{{ fullName }}</h1>
-      <v-btn class="ma-2" rounded @click="onEditInfo()">
-        <i class="material-icons-outlined"> edit </i>
+      <h1 v-if="user" class="text-4xl">{{ user.email }}</h1>
+      <v-btn
+        class="ma-2"
+        rounded
+        color="red"
+        variant="outlined"
+        @click="logout()"
+      >
+        Logout
       </v-btn>
     </div>
 
@@ -37,7 +67,7 @@
               <v-btn
                 variant="outlined"
                 class="mt-4"
-                @click="push('/characters')"
+                @click="router.push('/characters')"
               >
                 Go to characters</v-btn
               >
@@ -53,7 +83,11 @@
           <template #empty>
             <h3 class="mb-4 text-xl">
               <p>No favorite episodes founded</p>
-              <v-btn variant="outlined" class="mt-4" @click="push('/episodes')">
+              <v-btn
+                variant="outlined"
+                class="mt-4"
+                @click="router.push('/episodes')"
+              >
                 Go to episodes</v-btn
               >
             </h3>
@@ -71,7 +105,7 @@
               <v-btn
                 variant="outlined"
                 class="mt-4"
-                @click="push('/locations')"
+                @click="router.push('/locations')"
               >
                 Go to locations</v-btn
               >
@@ -82,18 +116,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useUserStore } from "@/stores/userStore";
-
-const { fullName, favoriteCharacters, favoriteEpisodes, favoriteLocations } =
-  useUserStore();
-const { push } = useRouter();
-
-const onEditInfo = () => {
-  console.log("comming soon...");
-};
-</script>
 
 <style lang="sass" scoped>
 .profile__image_container

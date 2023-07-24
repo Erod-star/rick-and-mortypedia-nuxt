@@ -6,9 +6,6 @@
   </div>
 </template>
 
-<script>
-// erodstardev@gmail.com
-// 12345
-</script>
+<script></script>
 
 <style lang="sass" scoped></style>

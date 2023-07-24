@@ -29,6 +29,10 @@
 <script setup>
 import { useMainStore } from "@/stores/mainStore";
 
+definePageMeta({
+  middleware: ["auth"],
+});
+
 const { locations } = useMainStore();
 </script>
 

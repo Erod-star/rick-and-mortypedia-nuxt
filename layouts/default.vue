@@ -33,6 +33,9 @@
 <script setup>
 import { useMainStore } from "@/stores/mainStore";
 
+const user = useSupabaseUser();
+console.log(user.value);
+
 const {
   characters,
   episodes,
@@ -41,6 +44,7 @@ const {
   getEpisodes,
   getLocations,
 } = useMainStore();
+
 onMounted(() => {
   if (!characters.length) getCharacters();
   if (!episodes.length) getEpisodes();

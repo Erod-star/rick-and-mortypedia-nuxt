@@ -1,3 +1,11 @@
+<script setup>
+definePageMeta({
+  middleware: ["auth"],
+});
+
+const { push } = useRouter();
+</script>
+
 <template>
   <div class="homepage flex">
     <v-img
@@ -58,16 +66,13 @@
   </div>
 </template>
 
-<script setup>
-const { push } = useRouter();
-</script>
-
 <style lang="sass" scoped>
 .homepage
   position: relative
   display: flex
   justify-content: center
   align-items: center
+  height: calc(100vh - 80px)
   &_background
     max-height: calc(100vh - 80px)
     opacity: 0.8

@@ -15,6 +15,10 @@
 <script setup>
 import { useMainStore } from "@/stores/mainStore";
 
+definePageMeta({
+  middleware: ["auth"],
+});
+
 const { characters, getCharacters } = useMainStore();
 // if (characters.length === 0) getCharacters();
 </script>

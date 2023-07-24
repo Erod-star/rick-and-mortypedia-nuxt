@@ -29,12 +29,17 @@ const consoleLog = () => {
 </script>
 
 <template>
-  <div class="homepage flex">
+  <div class="register flex">
     <div class="glass_container"></div>
 
-    <div class="homepage_card_container">
-      <div class="homepage_card mt-7 text-center text-white card-dark mr-20">
-        <h3 class="mt-7 text-3xl bg-yellow font-bold mx-10 py-4 rounded-md">
+    <div class="register_card_container">
+      <div class="register_card mt-7 text-center text-white card-dark mr-20">
+        <img
+          class="site-logo w-24 h-24"
+          src="/images/page-icon.png"
+          alt="page icon"
+        />
+        <h3 class="mt-7 text-3xl bg-green-800 font-bold mx-10 py-4 rounded-md">
           <i> Rick and Mortypedia </i>
         </h3>
         <h3 class="mt-7 text-2xl font-bold">Register</h3>
@@ -66,7 +71,7 @@ const consoleLog = () => {
           </p>
           <v-btn
             class="mt-10"
-            color="yellow-lighten-1"
+            color="green-lighten-1"
             variant="tonal"
             @click="signUp"
           >
@@ -81,7 +86,7 @@ const consoleLog = () => {
 </template>
 
 <style lang="sass" scoped>
-.homepage
+.register
   position: relative
   display: flex
   justify-content: center
@@ -105,7 +110,7 @@ const consoleLog = () => {
     justify-content: center
     height: 500px
     width: 500px
-  .homepage_card
+  .register_card
     width: 500px
     height: 520px
     background: #151515
@@ -113,4 +118,8 @@ const consoleLog = () => {
   .error_msg
     position: absolute
     left: 40px
+  .site-logo
+    position: absolute
+    left: calc(50% - 94px)
+    top: -25px
 </style>

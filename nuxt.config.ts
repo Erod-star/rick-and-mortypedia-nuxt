@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss", "@nuxtjs/supabase"],
   app: {
     head: {
-      title: "Rick and Morty world!",
+      title: "Rick and Morty world",
       meta: [
         {
           name: "description",

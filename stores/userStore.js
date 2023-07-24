@@ -2,24 +2,11 @@ import { defineStore } from "pinia";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
-    firstName: "Edson",
-    lastName: "Rodriguez",
     favoriteCharacters: [],
     favoriteEpisodes: [],
     favoriteLocations: [],
   }),
-  getters: {
-    fullName() {
-      return `${this.firstName} ${this.lastName}`;
-    },
-    favCharacters() {
-      return this.favoriteCharacters;
-    },
-  },
   actions: {
-    onLogin() {
-      console.log(`Welcome `);
-    },
     addToFavoriteCharacter(character) {
       const isOnFavorites = this.favoriteCharacters.find(
         (c) => c.id === character.id
