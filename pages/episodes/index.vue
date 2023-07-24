@@ -1,3 +1,23 @@
+<script setup>
+import { useMainStore } from "@/stores/mainStore";
+
+useHead({
+  title: `Rick and Mortypedia | Episodes`,
+  meta: [
+    {
+      name: `Rick and Mortypedia episodes page`,
+      content: `Episodes of Rick and Morty`,
+    },
+  ],
+});
+
+definePageMeta({
+  middleware: ["auth"],
+});
+
+const { episodes } = useMainStore();
+</script>
+
 <template>
   <div class="px-20 pb-10">
     <h1 class="text-5xl mt-6 mb-8">Episodes</h1>
@@ -25,16 +45,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useMainStore } from "@/stores/mainStore";
-
-definePageMeta({
-  middleware: ["auth"],
-});
-
-const { episodes } = useMainStore();
-</script>
 
 <style lang="sass" scoped>
 .episodes__image_container,

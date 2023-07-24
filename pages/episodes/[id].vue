@@ -1,3 +1,51 @@
+<script setup>
+import { useUserStore } from "@/stores/userStore";
+
+const { addToFavoriteEpisodes, favoriteEpisodes } = useUserStore();
+const { params } = useRoute();
+const router = useRouter();
+const episodeId = params.id;
+
+const { data: episode } = await useFetch(
+  `https://rickandmortyapi.com/api/episode/${episodeId}`
+);
+
+if (!episode.value) {
+  throw createError({ statusCode: 404, message: "Episode not founded :(" });
+}
+
+const { data: gifs } = await useFetch(
+  `/api/episodes/${episodeId}?title=${episode.value.name}`
+);
+
+const charactersIds = computed(() => {
+  let characters = [];
+  characters = episode.value.characters.map((c) => {
+    const split = c.split("/");
+    return split[split.length - 1];
+  });
+  return characters;
+});
+
+const isOnFavorites = (id) => {
+  const existOnFavorites = favoriteEpisodes.find(
+    (episode) => episode.id === id
+  );
+  return existOnFavorites;
+};
+
+useHead({
+  middleware: ["auth"],
+  title: `Rick and Mortypedia | Episode ${episodeId}`,
+  meta: [
+    {
+      name: `Rick and Morty episode ${episodeId}`,
+      content: `value info about the episode ${episodeId}`,
+    },
+  ],
+});
+</script>
+
 <template>
   <Loader v-if="!episode" />
   <div v-else class="mt-6 px-12">
@@ -62,53 +110,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useUserStore } from "@/stores/userStore";
-
-const { addToFavoriteEpisodes, favoriteEpisodes } = useUserStore();
-const { params } = useRoute();
-const router = useRouter();
-const episodeId = params.id;
-
-const { data: episode } = await useFetch(
-  `https://rickandmortyapi.com/api/episode/${episodeId}`
-);
-
-if (!episode.value) {
-  throw createError({ statusCode: 404, message: "Episode not founded :(" });
-}
-
-const { data: gifs } = await useFetch(
-  `/api/episodes/${episodeId}?title=${episode.value.name}`
-);
-
-const charactersIds = computed(() => {
-  let characters = [];
-  characters = episode.value.characters.map((c) => {
-    const split = c.split("/");
-    return split[split.length - 1];
-  });
-  return characters;
-});
-
-const isOnFavorites = (id) => {
-  const existOnFavorites = favoriteEpisodes.find(
-    (episode) => episode.id === id
-  );
-  return existOnFavorites;
-};
-
-useHead({
-  title: `Rick and Mortypedia | Episode ${episodeId}`,
-  meta: [
-    {
-      name: `Rick and Morty episode ${episodeId}`,
-      content: `value info about the episode ${episodeId}`,
-    },
-  ],
-});
-</script>
 
 <style scoped lang="sass">
 .episode

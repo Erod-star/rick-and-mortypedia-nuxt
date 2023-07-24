@@ -1,3 +1,19 @@
+<script setup>
+const { title, items } = defineProps({
+  title: {
+    type: String,
+    default: "No title",
+  },
+  items: Array,
+  path: {
+    type: String,
+    default: "characters",
+  },
+});
+
+const { push } = useRouter();
+</script>
+
 <template>
   <div
     v-if="items.length === 0"
@@ -36,22 +52,6 @@
     </v-sheet>
   </div>
 </template>
-
-<script setup>
-const { title, items } = defineProps({
-  title: {
-    type: String,
-    default: "No title",
-  },
-  items: Array,
-  path: {
-    type: String,
-    default: "characters",
-  },
-});
-
-const { push } = useRouter();
-</script>
 
 <style lang="sass" scoped>
 .v-btn

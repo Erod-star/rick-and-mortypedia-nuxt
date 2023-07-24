@@ -1,10 +1,3 @@
-<template>
-  <div
-    class="custom-dot"
-    :style="`background: ${color}; width: ${width}; height: ${height};`"
-  ></div>
-</template>
-
 <script setup>
 const { color, width, height } = defineProps({
   color: {
@@ -21,6 +14,13 @@ const { color, width, height } = defineProps({
   },
 });
 </script>
+
+<template>
+  <div
+    class="custom-dot"
+    :style="`background: ${color}; width: ${width}; height: ${height};`"
+  ></div>
+</template>
 
 <style lang="sass" scoped>
 .custom-dot

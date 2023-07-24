@@ -1,3 +1,28 @@
+<script setup>
+import { useMainStore } from "@/stores/mainStore";
+
+const user = useSupabaseUser();
+
+const {
+  characters,
+  episodes,
+  locations,
+  getCharacters,
+  getEpisodes,
+  getLocations,
+} = useMainStore();
+
+onMounted(() => {
+  if (!characters.length) getCharacters();
+  if (!episodes.length) getEpisodes();
+  if (!locations.length) getLocations();
+});
+
+watch(characters, () => {
+  if (characters.length === 0) getCharacters();
+});
+</script>
+
 <template>
   <div id="app">
     <header
@@ -29,32 +54,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useMainStore } from "@/stores/mainStore";
-
-const user = useSupabaseUser();
-console.log(user.value);
-
-const {
-  characters,
-  episodes,
-  locations,
-  getCharacters,
-  getEpisodes,
-  getLocations,
-} = useMainStore();
-
-onMounted(() => {
-  if (!characters.length) getCharacters();
-  if (!episodes.length) getEpisodes();
-  if (!locations.length) getLocations();
-});
-
-watch(characters, () => {
-  if (characters.length === 0) getCharacters();
-});
-</script>
 
 <style lang="sass">
 body

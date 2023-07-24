@@ -1,4 +1,14 @@
 <script setup>
+useHead({
+  title: `Rick and Mortypedia | Register`,
+  meta: [
+    {
+      name: `Rick and Mortypedia register page`,
+      content: `Register to Rick and Mortypedia`,
+    },
+  ],
+});
+
 definePageMeta({
   layout: "login",
 });
@@ -20,11 +30,6 @@ const signUp = async () => {
   } catch (error) {
     errorMsg.value = error.message;
   }
-};
-
-const consoleLog = () => {
-  console.log(email.value);
-  console.log(password.value);
 };
 </script>
 

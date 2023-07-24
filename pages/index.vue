@@ -1,4 +1,14 @@
 <script setup>
+useHead({
+  title: `Rick and Mortypedia`,
+  meta: [
+    {
+      name: `Rick and Mortypedia home page`,
+      content: `Home of the Rick and Mortypedia website`,
+    },
+  ],
+});
+
 definePageMeta({
   middleware: ["auth"],
 });

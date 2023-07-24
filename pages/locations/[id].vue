@@ -1,3 +1,57 @@
+<script setup>
+import { useUserStore } from "@/stores/userStore";
+
+definePageMeta({
+  middleware: ["auth"],
+});
+
+const { params } = useRoute();
+const { push } = useRouter();
+const { addToFavoriteLocations, favoriteLocations } = useUserStore();
+const locationId = params.id;
+
+const { data: location } = await useFetch(
+  `https://rickandmortyapi.com/api/location/${locationId}`
+);
+
+if (!location.value) {
+  throw createError({
+    statusCode: 404,
+    message: "This location does not exist",
+  });
+}
+
+const { data: gifs } = await useFetch(
+  `/api/episodes/${locationId}?title=${location.value.name}`
+);
+
+useHead({
+  title: location.value.name,
+  meta: [
+    {
+      name: `${location.value.name} info page`,
+      content: `Info of the ${location.value.name} location`,
+    },
+  ],
+});
+
+const charactersIds = computed(() => {
+  let characters = [];
+  characters = location.value.residents.map((c) => {
+    const split = c.split("/");
+    return split[split.length - 1];
+  });
+  return characters;
+});
+
+const isOnFavorites = (id) => {
+  const existOnFavorites = favoriteLocations.find(
+    (location) => location.id === id
+  );
+  return existOnFavorites;
+};
+</script>
+
 <template>
   <Loader v-if="!location" />
   <div v-else class="mt-6 px-12">
@@ -64,46 +118,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useUserStore } from "@/stores/userStore";
-
-const { params } = useRoute();
-const { push } = useRouter();
-const { addToFavoriteLocations, favoriteLocations } = useUserStore();
-const locationId = params.id;
-
-const { data: location } = await useFetch(
-  `https://rickandmortyapi.com/api/location/${locationId}`
-);
-
-if (!location.value) {
-  throw createError({
-    statusCode: 404,
-    message: "This location does not exist",
-  });
-}
-
-const { data: gifs } = await useFetch(
-  `/api/episodes/${locationId}?title=${location.value.name}`
-);
-
-const charactersIds = computed(() => {
-  let characters = [];
-  characters = location.value.residents.map((c) => {
-    const split = c.split("/");
-    return split[split.length - 1];
-  });
-  return characters;
-});
-
-const isOnFavorites = (id) => {
-  const existOnFavorites = favoriteLocations.find(
-    (location) => location.id === id
-  );
-  return existOnFavorites;
-};
-</script>
 
 <style scoped lang="sass">
 .location

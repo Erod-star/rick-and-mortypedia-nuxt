@@ -1,5 +1,15 @@
 <script setup>
 import { useUserStore } from "@/stores/userStore";
+useHead({
+  title: `Rick and Mortypedia | Register`,
+  meta: [
+    {
+      name: `Rick and Mortypedia register page`,
+      content: `Register to Rick and Mortypedia`,
+    },
+  ],
+});
+
 definePageMeta({
   middleware: ["auth"],
 });

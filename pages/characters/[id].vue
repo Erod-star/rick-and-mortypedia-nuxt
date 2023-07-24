@@ -1,3 +1,62 @@
+<script setup>
+import { useUserStore } from "@/stores/userStore";
+
+const { params } = useRoute();
+const {
+  favoriteCharacters,
+  addToFavoriteCharacter,
+  deleteFromFavoriteCharacters,
+} = useUserStore();
+const router = useRouter();
+const prasedEpisodes = ref([]);
+
+const setEpisodes = (episodes = []) => {
+  const newEpisodes = episodes.map((episode) => {
+    const episodeId = episode.split("/")[episode.split("/").length - 1];
+    return episodeId;
+  });
+  prasedEpisodes.value = newEpisodes;
+};
+
+const characterId = params.id;
+const uri = `https://rickandmortyapi.com/api/character/${characterId}`;
+const { data: character } = await useFetch(uri);
+
+if (!character.value) {
+  throw createError({ statusCode: 404, statusMessage: "Character not found" });
+}
+
+const isOnFavorites = (id) => {
+  const existOnFavorites = favoriteCharacters.find(
+    (character) => character.id === id
+  );
+  return existOnFavorites;
+};
+
+useHead({
+  title: `Rick and Mortypedia | ${character.value.name}`,
+  meta: [
+    {
+      name: `description of ${character.value.name}`,
+      content: `value info about ${character.value.name}`,
+    },
+  ],
+});
+setEpisodes(character.value.episode);
+
+// ? Handler to require a data from a completed endopoint responde
+// watch(
+//   character,
+//   (newCharacter) => {
+//     setEpisodes(newCharacter.episode);
+//   },
+//   {
+//     deep: true,
+//     immediate: true,
+//   }
+// );
+</script>
+
 <template>
   <div>
     <div v-if="!character" class="character__loader">
@@ -94,64 +153,5 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useUserStore } from "@/stores/userStore";
-
-const { params } = useRoute();
-const {
-  favoriteCharacters,
-  addToFavoriteCharacter,
-  deleteFromFavoriteCharacters,
-} = useUserStore();
-const router = useRouter();
-const prasedEpisodes = ref([]);
-
-const setEpisodes = (episodes = []) => {
-  const newEpisodes = episodes.map((episode) => {
-    const episodeId = episode.split("/")[episode.split("/").length - 1];
-    return episodeId;
-  });
-  prasedEpisodes.value = newEpisodes;
-};
-
-const characterId = params.id;
-const uri = `https://rickandmortyapi.com/api/character/${characterId}`;
-const { data: character } = await useFetch(uri);
-
-if (!character.value) {
-  throw createError({ statusCode: 404, statusMessage: "Character not found" });
-}
-
-const isOnFavorites = (id) => {
-  const existOnFavorites = favoriteCharacters.find(
-    (character) => character.id === id
-  );
-  return existOnFavorites;
-};
-
-useHead({
-  title: `Rick and Mortypedia | ${character.value.name}`,
-  meta: [
-    {
-      name: `description of ${character.value.name}`,
-      content: `value info about ${character.value.name}`,
-    },
-  ],
-});
-setEpisodes(character.value.episode);
-
-// ? Handler to require a data from a completed endopoint responde
-// watch(
-//   character,
-//   (newCharacter) => {
-//     setEpisodes(newCharacter.episode);
-//   },
-//   {
-//     deep: true,
-//     immediate: true,
-//   }
-// );
-</script>
 
 <style scoped></style>

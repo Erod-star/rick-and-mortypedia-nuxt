@@ -1,7 +1,18 @@
 <script setup>
+useHead({
+  title: `Rick and Mortypedia | Login`,
+  meta: [
+    {
+      name: `Rick and Mortypedia login page`,
+      content: `Login to Rick and Mortypedia`,
+    },
+  ],
+});
+
 definePageMeta({
   layout: "login",
 });
+
 const client = useSupabaseClient();
 const router = useRouter();
 

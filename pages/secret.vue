@@ -1,3 +1,15 @@
+<script setup>
+useHead({
+  title: `Rick and Mortypedia | Secret`,
+  meta: [
+    {
+      name: `Rick and Morty secret page`,
+      content: `value info about the secrets of the page`,
+    },
+  ],
+});
+</script>
+
 <template>
   <div>
     <h1>Congratulations, you found the secret!!</h1>
@@ -7,7 +19,5 @@
     />
   </div>
 </template>
-
-<script setup></script>
 
 <style lang="scss" scoped></style>

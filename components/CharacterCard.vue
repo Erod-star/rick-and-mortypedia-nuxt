@@ -1,3 +1,24 @@
+<script setup>
+const { character } = defineProps({
+  character: Object,
+});
+
+const { push } = useRouter();
+
+const setStatus = (status) => {
+  switch (status) {
+    case "Alive":
+      return "#4CAF50";
+    case "Dead":
+      return "#C62828";
+    case "unknown":
+      return "#B0BEC5";
+    default:
+      return "#4CAF50";
+  }
+};
+</script>
+
 <template>
   <v-card class="mx-auto" min-width="250" max-width="250" color="grey-darken-4">
     <v-img :src="character.image" :alt="character.name" height="250px" cover />
@@ -29,26 +50,5 @@
     </v-card-actions>
   </v-card>
 </template>
-
-<script setup>
-const { character } = defineProps({
-  character: Object,
-});
-
-const { push } = useRouter();
-
-const setStatus = (status) => {
-  switch (status) {
-    case "Alive":
-      return "#4CAF50";
-    case "Dead":
-      return "#C62828";
-    case "unknown":
-      return "#B0BEC5";
-    default:
-      return "#4CAF50";
-  }
-};
-</script>
 
 <style scoped></style>

@@ -1,3 +1,22 @@
+<script setup>
+import { useMainStore } from "@/stores/mainStore";
+useHead({
+  title: `Rick and Mortypedia | Locations`,
+  meta: [
+    {
+      name: `Rick and Mortypedia locations page`,
+      content: `Locations of Rick and Mortypedia`,
+    },
+  ],
+});
+
+definePageMeta({
+  middleware: ["auth"],
+});
+
+const { locations } = useMainStore();
+</script>
+
 <template>
   <div class="px-20 pb-10">
     <h1 class="text-5xl mt-6 mb-8">Locations</h1>
@@ -25,16 +44,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useMainStore } from "@/stores/mainStore";
-
-definePageMeta({
-  middleware: ["auth"],
-});
-
-const { locations } = useMainStore();
-</script>
 
 <style lang="sass" scoped>
 .locations__image_container,
