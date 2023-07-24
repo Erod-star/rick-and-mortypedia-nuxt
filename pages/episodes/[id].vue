@@ -14,9 +14,7 @@ if (!episode.value) {
   throw createError({ statusCode: 404, message: "Episode not founded :(" });
 }
 
-const { data: gifs } = await useFetch(
-  `/api/episodes/${episodeId}?title=${episode.value.name}`
-);
+const { data: gifs } = await useFetch(`/api/gifs?title=${episode.value.name}`);
 
 const charactersIds = computed(() => {
   let characters = [];

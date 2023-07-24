@@ -21,9 +21,7 @@ if (!location.value) {
   });
 }
 
-const { data: gifs } = await useFetch(
-  `/api/episodes/${locationId}?title=${location.value.name}`
-);
+const { data: gifs } = await useFetch(`/api/gifs?title=${location.value.name}`);
 
 useHead({
   title: location.value.name,
